@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans.xsd     
+    http://code.alibabatech.com/schema/dubbo        
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    
+    <dubbo:application name="${dubbo.application.name}" owner="${dubbo.application.owner}" />
+    <dubbo:provider timeout="${dubbo.provider.timeout}" token="${dubbo.provider.token}" />
+    <dubbo:consumer timeout="${dubbo.consumer.timeout}" check="${dubbo.consumer.check}" />
+    <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}" username="${dubbo.admin.username}" password="${dubbo.admin.password}" group="${dubbo.registry.group}"  timeout="${dubbo.registry.timeout}"/>
+    <dubbo:protocol name="${dubbo.protocol.name}" dispatcher="${dubbo.protocol.dispatcher}" threadpool="${dubbo.protocol.threadpool}" threads="${dubbo.protocol.threads}" accepts="${dubbo.protocol.accepts}"  port="${dubbo.protocol.port}" charset="${dubbo.protocol.charset}" payload="${dubbo.protocol.payload}"  />
+
+    <!--消费接口-->
+    <!-- 用户基础资料接口 -->
+    <dubbo:reference interface="com.aisafer.psg.user.client.service.RUserService" id="rUserService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 组织dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.psg.user.client.service.ROrganizationService" id="rOrganizationService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 业务字典dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.psg.pcs.client.service.RBaseCodeService" id="rBaseCodeService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 地区dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.psg.pcs.client.service.RRegionService" id="rRegionService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 车辆类型dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.psg.pcs.client.service.RVehicleTypeService" id="rVehicleTypeService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 车辆信息dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.dpc.client.service.RVehicleTrackService" id="rVehicleTrackService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 车辆信息dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.psg.vehicle.client.service.RVehicleService" id="rVehicleService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 行业类型dubbo服务 -->
+    <dubbo:reference interface="com.aisafer.psg.pcs.client.service.RIndusTypeService" id="rIndusTypeService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <!-- 车辆报警接口 -->
+    <dubbo:reference interface="com.aisafer.dpc.client.service.RVehicleAlarmRecordService" id="rVehicleAlarmRecordService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <dubbo:reference interface="com.aisafer.dpc.client.service.RLocationService" id="rLocationService" loadbalance="${dubbo.service.loadbalance}" />
+
+    <dubbo:reference interface="com.aisafer.psg.pcs.client.service.RAlarmItemService" id="rAlarmItemService" loadbalance="${dubbo.service.loadbalance}" />
+
+</beans>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.aisafer.webgis</groupId>
+    <artifactId>aisafer-webgis-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>aisafer-webgis-web</module>
+        <module>aisafer-webgis-netty</module>
+    </modules>
+
+    <parent>
+        <groupId>com.aisafer</groupId>
+        <artifactId>aisafer-super-parent</artifactId>
+        <version>1.0.15.RC</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.aisafer</groupId>
+            <artifactId>aisafer-redis</artifactId>
+            <version>1.1.0.T5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.easy</groupId>
+            <artifactId>easy-mq</artifactId>
+            <version>1.2.0.T40</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-base-tools</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.polaris</groupId>
+            <artifactId>polaris-base-utils</artifactId>
+            <version>1.0.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aisafer.psg.pcs</groupId>
+            <artifactId>aisafer-psg-pcs-client</artifactId>
+            <version>1.2.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aisafer.psg.user</groupId>
+            <artifactId>aisafer-psg-user-client</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aisafer.psg.vehicle</groupId>
+            <artifactId>aisafer-psg-vehicle-client</artifactId>
+            <version>1.5.24</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.aisafer</groupId>
+            <artifactId>dpc-client</artifactId>
+            <version>1.0.0.T88</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

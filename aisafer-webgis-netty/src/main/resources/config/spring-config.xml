@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<bean id="redisConfig" class="com.aisafer.base.multiple.RedisConfig" >
+		<property name="hostName" value="${spring.redis2.host}"/>
+		<property name="port" value="${spring.redis2.port}"/>
+		<property name="password" value="${spring.redis2.password}"/>
+		<property name="maxIdle" value="${spring.redis.pool.max-idle}"/>
+		<property name="minIdle" value="10"/>
+		<property name="maxTotal" value="${spring.redis.pool.max-wait}"/>
+		<property name="database" value="${spring.redis2.database}"/>
+		<property name="maxWaitMillis" value="${spring.redis.timeout}"/>
+		<property name="testOnBorrow" value="${spring.redis.testOnBorrow}"/>
+		<property name="testOnReturn" value="true" />
+		<property name="testWhileIdle" value="true"/>
+		<property name="timeBetweenEvictionRunsMillis" value="30000"/>
+		<property name="numTestsPerEvictionRun" value="10"/>
+		<property name="minEvictableIdleTimeMillis"  value="60000"/>
+
+		<property name="enable" value="${spring.redis.enable}"/>
+		<property name="spin" value="${spring.redis.spin}"/>
+		<property name="spinNum" value="${spring.redis.spinNum}"/>
+		<property name="lockExpire" value="${spring.redis.lockExpire}"/>
+		<property name="expire" value="${spring.redis.expire}"/>
+		<property name="spinThreadTime" value="${spring.redis.spinThreadTime}"/>
+	</bean>
+
+	<bean id="redisMultipleFactory" class="com.aisafer.base.multiple.RedisMultipleFactory" init-method="init">
+		<constructor-arg ref="redisConfig"/>
+	</bean>
+
+</beans>

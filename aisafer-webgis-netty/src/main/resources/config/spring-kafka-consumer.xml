@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+         http://www.springframework.org/schema/beans/spring-beans.xsd 
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context.xsd">
+	<bean id="groups" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!--<entry key="dpc" value="dpc-group" />-->
+				<entry key="webgis" value="webgis-group" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="topics" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<!-- 终端上下线 -->
+				<entry key="onlinestatus" value="terminal-onlinestatus" />
+				<!-- 终端心跳 -->
+				<entry key="heartbeat" value="terminal-heartbeat" />
+				<!-- 终端位置 -->
+				<entry key="location" value="terminal-location" />
+				<!-- 终端报警 -->
+				<entry key="alarm" value="terminal-alarm" />
+				<!-- 平台指令 -->
+				<entry key="command" value="platform-command" />
+				<entry key="commandresult" value="platform-command-result" />
+				<!-- 终端事件 -->
+				<entry key="event" value="terminal-event" />
+				<!-- 终端应答 -->
+				<entry key="response" value="terminal-response" />
+				<!-- 终端消息 -->
+				<entry key="terminal" value="terminal-message" />
+				<!-- 平台消息 -->
+				<entry key="platform" value="platform-message" />
+				<!-- Web指令 -->
+				<entry key="web-command" value="web-command" />
+				<!-- Web指令响应 -->
+				<entry key="web-response" value="web-response" />
+				<!-- Web指令 -->
+				<entry key="alarm-score" value="dpc-alarm-score" />
+				
+				<entry key="sync-gpsinfo" value="sync-gpsinfo" />
+				<entry key="sync-newalarm" value="sync-newalarm" />
+				<entry key="sync-mediaitem" value="sync-mediaitem" />
+				<entry key="sync-onlinerecord" value="sync-onlinerecord" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<!-- 定义consumer的参数 -->
+	<bean id="consumer" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="bootstrap.servers" value="${bootstrap.servers}" />
+				<entry key="groups" value-ref="groups" />
+				<entry key="topics" value-ref="topics" />
+				<entry key="enable.auto.commit" value="false" />
+				<entry key="auto.commit.interval.ms" value="10000" />
+				<entry key="max.poll.records" value="1000"/>
+				<entry key="auto.offset.reset" value="latest"/>
+				<entry key="session.timeout.ms" value="30000" />
+				<entry key="consumer.timeout.ms" value="-1" />
+				<entry key="batch.num" value="500"/>
+				<entry key="batch.timeout" value="1000"/>
+				<entry key="retries.num" value="3"/>
+				<entry key="timeout" value="10"/>
+				<entry key="acks" value="1"/>
+				<entry key="key.deserializer"
+					value="org.apache.kafka.common.serialization.StringDeserializer" />
+				<entry key="value.deserializer"
+					value="org.apache.kafka.common.serialization.StringDeserializer" />
+				<entry key="transfer" value="com.easy.mq.serialization.JackSon"/>
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<bean id="kafka" class="com.easy.mq.factory.KafkaConfigFactory">
+		<property name="redisMultipleFactory" ref="redisMultipleFactory"/>
+		<constructor-arg ref="consumer" />
+	</bean>
+</beans>
